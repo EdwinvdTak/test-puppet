@@ -7,6 +7,10 @@ package { 'ntp':
   ensure => installed,
 }
 
+package { 'mc': 
+  ensure => installed,
+}
+
 service { 'ntp':
   name      => $service_name,
   ensure    => running,
