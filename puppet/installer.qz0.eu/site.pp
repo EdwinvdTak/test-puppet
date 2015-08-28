@@ -14,20 +14,7 @@ service { 'ntp':
   subscribe => File['ntp.conf'],
 }
 
-$str = "driftfile /var/lib/ntp/ntp.drift\nstatistics loopstats peerstats clockstats
-filegen loopstats file loopstats type day enable
-filegen peerstats file peerstats type day enable
-filegen clockstats file clockstats type day enable
-server 0.ubuntu.pool.ntp.org
-server 1.ubuntu.pool.ntp.org
-server 2.ubuntu.pool.ntp.org
-server 3.ubuntu.pool.ntp.org
-server ntp.ubuntu.com
-restrict -4 default kod notrap nomodify nopeer noquery
-restrict -6 default kod notrap nomodify nopeer noquery
-restrict 127.0.0.1
-restrict ::1
-"
+$str = "driftfile /var/lib/ntp/ntp.drift\nstatistics loopstats peerstats clockstats\nfilegen loopstats file loopstats type day enable\nfilegen peerstats file peerstats type day enable\nfilegen clockstats file clockstats type day enable\nserver 0.ubuntu.pool.ntp.org\nserver 1.ubuntu.pool.ntp.org\nserver 2.ubuntu.pool.ntp.org\nserver 3.ubuntu.pool.ntp.org\nserver ntp.ubuntu.com\nrestrict -4 default kod notrap nomodify nopeer noquery\nrestrict -6 default kod notrap nomodify nopeer noquery\nrestrict 127.0.0.1\nrestrict ::1\n"
 
 file { 'ntp.conf':
   path    => '/etc/ntp.conf',
